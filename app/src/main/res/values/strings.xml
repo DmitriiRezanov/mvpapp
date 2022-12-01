@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">mvpapp</string>
+    <string name="this_is_change_text">This is change text!</string>
 </resources>
