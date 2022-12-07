@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">mvpapp</string>
-    <string name="this_is_change_text">This is change text!</string>
+    <string name="app_name">Shopping List</string>
+    <string name="add_shop_item_content_description">Add new shop item</string>
 </resources>
