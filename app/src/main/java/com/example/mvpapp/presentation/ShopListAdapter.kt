@@ -17,11 +17,12 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopItemViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.item_shop_disabled,
-            parent,
-            false
-        )
+        val layout = when (viewType) {
+            VIEW_TYPE_DISABLED -> R.layout.item_shop_disabled
+            VIEW_TYPE_ENABLED -> R.layout.item_shop_enabled
+            else -> throw  RuntimeException("Unknown view type: $viewType")
+        }
+        val view = LayoutInflater.from(parent.context).inflate(layout, parent, false)
         return ShopItemViewHolder(view)
     }
 
@@ -34,6 +35,16 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
         }
     }
 
+    override fun getItemViewType(position: Int): Int {
+        val item = shopList[position]
+        return if (item.enabled){
+            VIEW_TYPE_ENABLED
+        } else {
+            VIEW_TYPE_DISABLED
+        }
+
+    }
+
     override fun getItemCount(): Int {
         return shopList.size
     }
@@ -41,5 +52,12 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
     class ShopItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val tvName = view.findViewById<TextView>(R.id.tv_name)
         val tvCount = view.findViewById<TextView>(R.id.tv_count)
+    }
+
+    companion object {
+        const val VIEW_TYPE_ENABLED = 100
+        const val VIEW_TYPE_DISABLED = 101
+
+        const val MAX_POOL_SIZE = 15
     }
 }
