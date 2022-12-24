@@ -4,4 +4,6 @@
     <string name="hint_et_name">Name</string>
     <string name="hint_et_count">Count:</string>
     <string name="btn_save">Save</string>
+    <string name="error_input_count">error input count</string>
+    <string name="error_input_name">error_input_name</string>
 </resources>
